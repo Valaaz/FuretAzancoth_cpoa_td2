@@ -1,10 +1,13 @@
 package metier;
 import java.time.*;
+import java.util.HashMap;
 
 public class Commande {
 	private int idCommande;
 	private Client idClient;
 	private LocalDate date;
+	
+	HashMap<Produit, LigneCommande> listeCommande = new HashMap<Produit, LigneCommande>();
 	
 	public Commande(int idCommande, Client idClient, LocalDate date) {
 		super();
@@ -35,6 +38,14 @@ public class Commande {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public HashMap<Produit, LigneCommande> getListeCommande() {
+		return listeCommande;
+	}
+
+	public void setListeCommande(HashMap<Produit, LigneCommande> listeCommande) {
+		this.listeCommande = listeCommande;
 	}
 
 	@Override

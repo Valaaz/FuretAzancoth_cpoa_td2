@@ -6,15 +6,12 @@ public class LigneCommande {
 	private int idCommande;
 	private Produit idProduit;
 	private double tarifUnitaire;
-	
-	HashMap<Integer, Produit> listeCommande = new HashMap<Integer, Produit>();
 
-	public LigneCommande(int idCommande, Produit idProduit, double tarifUnitaire, HashMap<Integer, Produit> listeCommande) {
+	public LigneCommande(int idCommande, Produit idProduit, double tarifUnitaire) {
 		super();
 		this.idCommande = idCommande;
 		this.idProduit = idProduit;
 		this.tarifUnitaire = tarifUnitaire;
-		this.listeCommande = listeCommande;
 	}
 
 	public int getIdCommande() {
@@ -41,18 +38,10 @@ public class LigneCommande {
 		this.tarifUnitaire = tarifUnitaire;
 	}
 
-	public HashMap<Integer, Produit> getListeCommande() {
-		return listeCommande;
-	}
-
-	public void setListeCommande(HashMap<Integer, Produit> listeCommande) {
-		this.listeCommande = listeCommande;
-	}
-
 	@Override
 	public String toString() {
 		return "LigneCommande [idCommande=" + idCommande + ", idProduit=" + idProduit + ", tarifUnitaire="
-				+ tarifUnitaire + ", listeCommande=" + listeCommande + "]";
+				+ tarifUnitaire + "]";
 	}
 	
 	

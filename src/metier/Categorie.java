@@ -6,16 +6,16 @@ public class Categorie {
 	private String visuel;
 	
 	public Categorie(int id, String nom, String visuel) {
-		this.setid(id);
+		this.setId(id);
 		this.setnom(nom);
 		this.setVisuel(visuel);
 	}
 	
-	public int getid() { 
+	public int getId() { 
 		return this.id; 
 	}
 	
-	public void setid(int id) {
+	public void setId(int id) {
 		this.id = id;
 		}
 	
