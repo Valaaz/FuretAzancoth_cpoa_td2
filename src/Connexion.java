@@ -5,9 +5,15 @@ public class Connexion {
 	
 	public static Connection creeConnexion() 
 	{
+		/*
 		String url = "jdbc:mysql://devbdd.iutmetz.univ-lorraine.fr:3306/azancoth1u_cpoaTD1?serverTimezone=Europe/Paris";
 		String login = "azancoth1u_appli";
 		String pwd = "31901886";
+		*/
+		
+		String url = "jdbc:mysql://localhost/azancoth1u_cpoatd1?serverTimezone=Europe/Paris";
+		String login = "root";
+		String pwd = "root"; 
 		
 		Connection maConnexion = null;
 		try { 
@@ -20,7 +26,7 @@ public class Connexion {
 		}
 	
 	
-	//Catï¿½gorie
+	//Catégorie
 	public static void AjouterCategorie(int id, String titre, String visuel) {
 		try {
 			Connection laConnexion = creeConnexion();
@@ -29,7 +35,7 @@ public class Connexion {
 		} catch (SQLException sqle)
 		{
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -40,7 +46,7 @@ public class Connexion {
 			requete.executeUpdate("DELETE FROM `Categorie` WHERE id_categorie=" + id);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}	
 	}
 	
@@ -51,7 +57,7 @@ public class Connexion {
 			requete.executeUpdate("UPDATE `Categorie` SET `id_categorie`=" + id + ",`titre`=" + "'" + titre + "'" + ",`visuel`=" + "'" + visuel + "'" + " WHERE id_categorie=" + idModif);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}	
 	}
 	
@@ -68,7 +74,7 @@ public class Connexion {
 			System.out.println(listeCateg);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 		
 	}
@@ -82,7 +88,7 @@ public class Connexion {
 			requete.executeUpdate("INSERT INTO `Client` VALUES (" + id + "," + "'" + nom + "'" + "," + "'" + prenom + "'" + ", 'test', 'test', 0, 'test', 0, 'test', 'test'" + ")");
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -93,7 +99,7 @@ public class Connexion {
 			requete.executeUpdate("DELETE FROM `Client` WHERE id_client=" + id);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -104,7 +110,7 @@ public class Connexion {
 			requete.executeUpdate("UPDATE `Client` SET `id_client`=" + id + ",`nom`=" + "'" + nom + "'" + ",`prenom`=" + "'" + prenom + "'" + " WHERE id_client=" + idModif);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -117,13 +123,13 @@ public class Connexion {
 			while (rs.next()) {
 				  String nom = rs.getString("nom");
 				  String prenom = rs.getString("prenom");
-				  String cl = nom.concat(" " + prenom);		//Concatenation du nom et du prï¿½nom
+				  String cl = nom.concat(" " + prenom);		//Concatenation du nom et du prénom
 				  listeClient.add(cl);
 				}
 			System.out.println(listeClient);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -136,7 +142,7 @@ public class Connexion {
 			requete.executeUpdate("INSERT INTO `Produit` VALUES (" + id + ",'" + nom + "'" + ", '" + desc + "'" + ", " + tarif + ", '" + visuel + "'" + ", " + idCateg + ")");
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -147,7 +153,7 @@ public class Connexion {
 			requete.executeUpdate("DELETE FROM `Produit` WHERE id_produit=" + id);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -158,7 +164,7 @@ public class Connexion {
 			requete.executeUpdate("UPDATE `Produit` SET `id_produit`=" + id + ",`nom`=" + "'" + nom + "'" + ",`description`=" + "'" + desc + "'"  + ",`tarif`=" + tarif + ",`visuel`=" + "'" + visuel + "'" + ",`id_categorie`=" + idCateg + " WHERE id_produit=" + idModif);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 	
@@ -175,7 +181,7 @@ public class Connexion {
 			System.out.println(listeProduit);
 		} catch(SQLException sqle) {
 			System.out.println("Pb dans select " + sqle.getMessage());
-			System.out.println("Veuillez rï¿½essayer ou quitter");
+			System.out.println("Veuillez réessayer ou quitter");
 		}
 	}
 

@@ -1,7 +1,5 @@
 package metier;
 
-import java.util.HashMap;
-
 public class LigneCommande {
 	private int idCommande;
 	private Produit idProduit;

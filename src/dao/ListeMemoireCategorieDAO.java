@@ -5,7 +5,6 @@ import metier.Categorie;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
 public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 	private static ListeMemoireCategorieDAO instance;
@@ -35,7 +34,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 	public boolean create(Categorie objet) {
 
 		objet.setId(3);
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait...
+		// Ne fonctionne que si l'objet métier est bien fait...
 		while (this.donnees.contains(objet)) {
 
 			objet.setId(objet.getId() + 1);
@@ -48,7 +47,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 	@Override
 	public boolean update(Categorie objet) {
 		
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait...
+		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de modification d'une categorie inexistante");
@@ -65,7 +64,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 		Categorie supprime;
 		
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait...
+		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de suppression d'une categorie inexistante");
@@ -78,10 +77,10 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 	@Override
 	public Categorie getById(int id) {
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait...
+		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(new Categorie(id, "test", "test.png"));
 		if (idx == -1) {
-			throw new IllegalArgumentException("Aucune categorie ne possÃ¨de cet identifiant");
+			throw new IllegalArgumentException("Aucune categorie ne possède cet identifiant");
 		} else {
 			return this.donnees.get(idx);
 		}
@@ -92,4 +91,3 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 		return (ArrayList<Categorie>) this.donnees;
 	}
 }
-*/
