@@ -1,4 +1,4 @@
-package dao.vue;
+package dao.modele;
 
 import dao.DAO;
 import metier.LigneCommande;

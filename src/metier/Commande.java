@@ -4,16 +4,16 @@ import java.util.HashMap;
 
 public class Commande {
 	private int idCommande;
-	private Client idClient;
+	private int idClient;
 	private LocalDate date;
 	
 	HashMap<Produit, LigneCommande> listeCommande = new HashMap<Produit, LigneCommande>();
 	
-	public Commande(int idCommande, Client idClient, LocalDate date) {
+	public Commande(int idCommande, LocalDate date, int idClient) {
 		super();
 		this.idCommande = idCommande;
-		this.idClient = idClient;
 		this.date = date;
+		this.idClient = idClient;
 	}
 
 	public int getIdCommande() {
@@ -24,11 +24,11 @@ public class Commande {
 		this.idCommande = idCommande;
 	}
 
-	public Client getIdClient() {
+	public int getIdClient() {
 		return idClient;
 	}
 
-	public void setIdClient(Client idClient) {
+	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
 
@@ -60,7 +60,7 @@ public class Commande {
 	- conversion d'une LocalDate en date MySQL
     	java.sql.Date.valueOf(maLocalDate)
 
-    - saisie d'une date : sous forme de chaîne, puis utilisation d'un formateur de date
+    - saisie d'une date : sous forme de chaine, puis utilisation d'un formateur de date
     	DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     	LocalDate dateDebut = LocalDate.parse(maStringDate, formatage);

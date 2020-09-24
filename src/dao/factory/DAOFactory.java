@@ -1,7 +1,11 @@
 package dao.factory;
 
 import dao.Persistance;
-import dao.vue.*;
+import dao.modele.CategorieDAO;
+import dao.modele.ClientDAO;
+import dao.modele.CommandeDAO;
+import dao.modele.LigneCommandeDAO;
+import dao.modele.ProduitDAO;
 
 public abstract class DAOFactory {
 	
@@ -23,6 +27,6 @@ public abstract class DAOFactory {
 	public abstract ClientDAO getClientDAO();
 	public abstract ProduitDAO getProduitDAO();
 	public abstract CommandeDAO getCommandeDAO();
-	public abstract LigneCommandeDAO getLigneCommande();
+	public abstract LigneCommandeDAO getLigneCommandeDAO();
 
 }

@@ -5,7 +5,7 @@ import metier.Client;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.vue.ClientDAO;
+import dao.modele.ClientDAO;
 
 public class ListeMemoireClientDAO implements ClientDAO {
 

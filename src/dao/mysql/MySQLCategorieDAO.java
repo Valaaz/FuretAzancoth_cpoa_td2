@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connexion.Connexion;
-import dao.vue.CategorieDAO;
+import dao.modele.CategorieDAO;
 import metier.Categorie;
 
 public class MySQLCategorieDAO implements CategorieDAO {
@@ -39,31 +39,28 @@ public class MySQLCategorieDAO implements CategorieDAO {
 	public boolean update(Categorie object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("UPDATE `Categorie` SET titre=?, visuel=? WHERE id_categorie=?");
+		PreparedStatement requete = laConnexion.prepareStatement("UPDATE `Categorie` SET titre=?, visuel=? WHERE id_categorie=" + object.getId());
 		
 		requete.setString(1, object.getTitre());
 		requete.setString(2, object.getVisuel());
-		requete.setInt(3, object.getId());
 		
 		return nbLignes==1;
 	}
 
 	public boolean delete(Categorie object) throws SQLException {
 		int nbLignes = 0;
-			Connection laConnexion = Connexion.creeConnexion();
-			PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM categorie where id_categorie=?");
+		Connection laConnexion = Connexion.creeConnexion();
+		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM categorie where id_categorie=" + object.getId());
+		
+		nbLignes = requete.executeUpdate();
 			
-			requete.setInt(1, object.getId());
-			nbLignes = requete.executeUpdate();
-			
-			return nbLignes==1;
+		return nbLignes==1;
 	}
 
 	public Categorie getById(int id) throws SQLException {
 		Categorie categ = null;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM categorie where id_categorie=?");
-		requete.setInt(1, id);
+		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM categorie where id_categorie=" + id);
 		ResultSet res = requete.executeQuery();
 		if (res.next()) {
 			categ = new Categorie(res.getInt(1), res.getString(2), res.getString(3));

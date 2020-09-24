@@ -1,7 +1,11 @@
 package dao.factory;
 
+import dao.modele.CategorieDAO;
+import dao.modele.ClientDAO;
+import dao.modele.CommandeDAO;
+import dao.modele.LigneCommandeDAO;
+import dao.modele.ProduitDAO;
 import dao.mysql.*;
-import dao.vue.*;
 
 public class MySQLDAOFactory extends DAOFactory {
 	
@@ -29,4 +33,5 @@ public class MySQLDAOFactory extends DAOFactory {
 	public LigneCommandeDAO getLigneCommandeDAO() {
 		return MySQLLigneCommandeDAO.getInstance();
 	}
+
 }

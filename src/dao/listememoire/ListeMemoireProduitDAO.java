@@ -5,7 +5,7 @@ import metier.Produit;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.vue.ProduitDAO;
+import dao.modele.ProduitDAO;
 
 public class ListeMemoireProduitDAO implements ProduitDAO {
 

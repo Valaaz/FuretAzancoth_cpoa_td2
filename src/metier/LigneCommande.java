@@ -2,10 +2,11 @@ package metier;
 
 public class LigneCommande {
 	private int idCommande;
-	private Produit idProduit;
+	private int idProduit;
+	private int quantite;
 	private double tarifUnitaire;
 
-	public LigneCommande(int idCommande, Produit idProduit, double tarifUnitaire) {
+	public LigneCommande(int idCommande, int idProduit, int quantite, double tarifUnitaire) {
 		super();
 		this.idCommande = idCommande;
 		this.idProduit = idProduit;
@@ -20,12 +21,20 @@ public class LigneCommande {
 		this.idCommande = idCommande;
 	}
 
-	public Produit getIdProduit() {
+	public int getIdProduit() {
 		return idProduit;
 	}
 
-	public void setIdProduit(Produit idProduit) {
+	public void setIdProduit(int idProduit) {
 		this.idProduit = idProduit;
+	}
+	
+	public int getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 
 	public double getTarifUnitaire() {

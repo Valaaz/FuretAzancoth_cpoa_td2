@@ -1,11 +1,11 @@
 package dao.factory;
 
 import dao.listememoire.ListeMemoireCategorieDAO;
-import dao.vue.CategorieDAO;
-import dao.vue.ClientDAO;
-import dao.vue.CommandeDAO;
-import dao.vue.LigneCommandeDAO;
-import dao.vue.ProduitDAO;
+import dao.modele.CategorieDAO;
+import dao.modele.ClientDAO;
+import dao.modele.CommandeDAO;
+import dao.modele.LigneCommandeDAO;
+import dao.modele.ProduitDAO;
 
 public class ListeMemoireDAOFactory extends DAOFactory {
 	
