@@ -1,9 +1,11 @@
-package dao;
+package dao.listememoire;
 
 import metier.Categorie;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dao.vue.CategorieDAO;
 
 public class ListeMemoireCategorieDAO implements CategorieDAO {
 

@@ -1,9 +1,11 @@
-package dao;
+package dao.listememoire;
 
 import metier.Client;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dao.vue.ClientDAO;
 
 public class ListeMemoireClientDAO implements ClientDAO {
 

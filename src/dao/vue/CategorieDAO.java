@@ -1,4 +1,4 @@
-package dao;
+package dao.vue;
 
 import java.util.ArrayList;
 
