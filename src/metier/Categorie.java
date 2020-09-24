@@ -2,12 +2,12 @@ package metier;
 
 public class Categorie {
 	private int id;
-	private String nom;
+	private String titre;
 	private String visuel;
 	
-	public Categorie(int id, String nom, String visuel) {
+	public Categorie(int id, String titre, String visuel) {
 		this.setId(id);
-		this.setnom(nom);
+		this.setTitre(titre);
 		this.setVisuel(visuel);
 	}
 	
@@ -19,15 +19,15 @@ public class Categorie {
 		this.id = id;
 		}
 	
-	public String getnom() {
-		return this.nom;
+	public String getTitre() {
+		return this.titre;
 	}
 	
-	public void setnom(String nom) {
-		if (nom==null || nom.trim().length()==0) {
-			throw new IllegalArgumentException("nom de la categorie vide !");
+	public void setTitre(String titre) {
+		if (titre==null || titre.trim().length()==0) {
+			throw new IllegalArgumentException("Titre de la categorie vide !");
 		}
-		this.nom = nom;
+		this.titre = titre;
 	}
 	
 	public String getVisuel() {
@@ -36,13 +36,13 @@ public class Categorie {
 	
 	public void setVisuel(String visuel) {
 		if (visuel==null || visuel.trim().length()==0) {
-			throw new IllegalArgumentException("nom de la categorie vide !");
+			throw new IllegalArgumentException("Visuel de la categorie vide !");
 		}
 		this.visuel = visuel;
 	}
 		
 	public String toString() {
-		return "(" + (this.id>=0?this.id:"iduveau") + ") " + this.nom + this.visuel;
+		return "(" + (this.id>=0?this.id:"iduveau") + ") " + this.titre + this.visuel;
 	}
 	
 }
