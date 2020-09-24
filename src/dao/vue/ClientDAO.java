@@ -1,19 +1,8 @@
 package dao.vue;
 
-import java.util.ArrayList;
-
+import dao.DAO;
 import metier.Client;
 
-public interface ClientDAO {
+public interface ClientDAO extends DAO<Client> {
 	
-	boolean create(Client objet);
-
-	boolean update(Client objet);
-
-	boolean delete(Client objet);
-
-	Client getById(int id);
-
-	ArrayList<Client> findAll();
-
 }
