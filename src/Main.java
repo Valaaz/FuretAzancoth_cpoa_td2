@@ -1,6 +1,10 @@
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.Scanner;
+
 import connexion.Connexion;
+import requetes.RequetesCategorie;
+import requetes.RequetesClients;
+import requetes.RequetesProduits;
 
 public class Main {
 
@@ -40,7 +44,7 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String titre = sc.nextLine();
 						String visuel = sc.nextLine();
-						Connexion.AjouterCategorie(id, titre, visuel);		//Appel de la méthode en fonction du cas choisi
+						RequetesCategorie.AjouterCategorie(id, titre, visuel);		//Appel de la méthode en fonction du cas choisi
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -61,7 +65,7 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String titreModif = sc.nextLine();
 						String visuelModif = sc.nextLine();
-						Connexion.ModifierCategorie(idModif, nouvId, titreModif, visuelModif);
+						RequetesCategorie.ModifierCategorie(idModif, nouvId, titreModif, visuelModif);
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -78,7 +82,7 @@ public class Main {
 					case 3:
 						System.out.print("Rentrez le numéro de la catégorie à supprimer : ");
 						int idSupp = sc.nextInt();
-						Connexion.SupprimerCategorie(idSupp);
+						RequetesCategorie.SupprimerCategorie(idSupp);
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -93,7 +97,7 @@ public class Main {
 						break;
 						
 					case 4:
-						Connexion.listeCategorie();
+						RequetesCategorie.listeCategorie();
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						
 						do
@@ -127,7 +131,7 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String nom = sc.nextLine();
 						String prenom = sc.nextLine();
-						Connexion.AjouterClient(id, nom, prenom);		//Appel de la méthode en fonction du cas choisi
+						RequetesClients.AjouterClient(id, nom, prenom);		//Appel de la méthode en fonction du cas choisi
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -148,7 +152,7 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String nomModif = sc.nextLine();
 						String prenomModif = sc.nextLine();
-						Connexion.ModifierClient(idModif, nouvId, nomModif, prenomModif);
+						RequetesClients.ModifierClient(idModif, nouvId, nomModif, prenomModif);
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -165,7 +169,7 @@ public class Main {
 					case 3:
 						System.out.print("Rentrez le numéro du client à supprimer : ");
 						int idSupp = sc.nextInt();
-						Connexion.SupprimerClient(idSupp);
+						RequetesClients.SupprimerClient(idSupp);
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -180,7 +184,7 @@ public class Main {
 						break;
 						
 					case 4:
-						Connexion.listeClient();
+						RequetesClients.listeClient();
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						
 						do
@@ -218,7 +222,7 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String visuel = sc.nextLine();
 						int idCateg = sc.nextInt();
-						Connexion.AjouterProduit(id, nom, desc, tarif, visuel, idCateg);		//Appel de la méthode en fonction du cas choisi
+						RequetesProduits.AjouterProduit(id, nom, desc, tarif, visuel, idCateg);		//Appel de la méthode en fonction du cas choisi
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -243,7 +247,7 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String visuelModif = sc.nextLine();
 						int idCategModif = sc.nextInt();
-						Connexion.ModifierProduit(idModif, nouvId, nomModif, descModif, tarifModif, visuelModif, idCategModif);
+						RequetesProduits.ModifierProduit(idModif, nouvId, nomModif, descModif, tarifModif, visuelModif, idCategModif);
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -260,7 +264,7 @@ public class Main {
 					case 3:
 						System.out.print("Rentrez le numéro du produit à supprimer : ");
 						int idSupp = sc.nextInt();
-						Connexion.SupprimerProduit(idSupp);
+						RequetesProduits.SupprimerProduit(idSupp);
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -275,7 +279,7 @@ public class Main {
 						break;
 						
 					case 4:
-						Connexion.listeProduit();
+						RequetesProduits.listeProduit();
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						
 						do
