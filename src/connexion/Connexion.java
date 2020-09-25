@@ -1,6 +1,5 @@
 package connexion;
 import java.sql.*;
-import java.util.ArrayList;
 
 public class Connexion {
 	

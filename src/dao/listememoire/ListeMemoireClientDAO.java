@@ -13,7 +13,6 @@ public class ListeMemoireClientDAO implements ClientDAO {
 
 	private List<Client> donnees;
 
-
 	public static ListeMemoireClientDAO getInstance() {
 
 		if (instance == null) {
@@ -35,7 +34,7 @@ public class ListeMemoireClientDAO implements ClientDAO {
 	public boolean create(Client objet) {
 
 		objet.setId(3);
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		while (this.donnees.contains(objet)) {
 
 			objet.setId(objet.getId() + 1);
@@ -48,7 +47,7 @@ public class ListeMemoireClientDAO implements ClientDAO {
 	@Override
 	public boolean update(Client objet) {
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de modification d'un client inexistant");
@@ -65,7 +64,7 @@ public class ListeMemoireClientDAO implements ClientDAO {
 
 		Client supprime;
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de suppression d'un client inexistant");
@@ -78,10 +77,10 @@ public class ListeMemoireClientDAO implements ClientDAO {
 
 	@Override
 	public Client getById(int id) {
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		int idx = this.donnees.indexOf(new Client(id, "test", "test.png"));
 		if (idx == -1) {
-			throw new IllegalArgumentException("Aucun client ne possède cet identifiant");
+			throw new IllegalArgumentException("Aucun client ne possï¿½de cet identifiant");
 		} else {
 			return this.donnees.get(idx);
 		}

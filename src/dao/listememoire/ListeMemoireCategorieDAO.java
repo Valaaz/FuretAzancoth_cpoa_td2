@@ -13,7 +13,6 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 	private List<Categorie> donnees;
 
-
 	public static ListeMemoireCategorieDAO getInstance() {
 
 		if (instance == null) {
@@ -36,7 +35,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 	public boolean create(Categorie objet) {
 
 		objet.setId(3);
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		while (this.donnees.contains(objet)) {
 
 			objet.setId(objet.getId() + 1);
@@ -49,7 +48,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 	@Override
 	public boolean update(Categorie objet) {
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de modification d'une categorie inexistante");
@@ -66,7 +65,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 		Categorie supprime;
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de suppression d'une categorie inexistante");
@@ -79,10 +78,10 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 	@Override
 	public Categorie getById(int id) {
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		int idx = this.donnees.indexOf(new Categorie(id, "test", "test.png"));
 		if (idx == -1) {
-			throw new IllegalArgumentException("Aucune categorie ne possède cet identifiant");
+			throw new IllegalArgumentException("Aucune categorie ne possï¿½de cet identifiant");
 		} else {
 			return this.donnees.get(idx);
 		}
