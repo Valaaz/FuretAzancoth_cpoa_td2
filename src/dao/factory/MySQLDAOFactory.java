@@ -5,7 +5,12 @@ import dao.modele.ClientDAO;
 import dao.modele.CommandeDAO;
 import dao.modele.LigneCommandeDAO;
 import dao.modele.ProduitDAO;
-import dao.mysql.*;
+import dao.mysql.MySQLCategorieDAO;
+import dao.mysql.MySQLClientDAO;
+import dao.mysql.MySQLCommandeDAO;
+import dao.mysql.MySQLLigneCommandeDAO;
+import dao.mysql.MySQLProduitDAO;
+import metier.LigneCommande;
 
 public class MySQLDAOFactory extends DAOFactory {
 	
@@ -30,7 +35,7 @@ public class MySQLDAOFactory extends DAOFactory {
 	}
 	
 	@Override
-	public LigneCommandeDAO getLigneCommandeDAO() {
+	public LigneCommandeDAO<LigneCommande> getLigneCommandeDAO() {
 		return MySQLLigneCommandeDAO.getInstance();
 	}
 

@@ -1,7 +1,6 @@
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import connexion.Connexion;
 import requetes.RequetesCategorie;
 import requetes.RequetesClients;
 import requetes.RequetesProduits;

@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connexion.Connexion;
+import dao.modele.LigneCommandeDAO;
 import metier.LigneCommande;
 
-//Vu que LigneCommande possède une clé primaire, LigneCommande n'implémente pas LigneCommandeDAO
-public class MySQLLigneCommandeDAO {
+public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 
-private static MySQLLigneCommandeDAO instance;
+	private static MySQLLigneCommandeDAO instance;
 	
 	private MySQLLigneCommandeDAO() {}
 	

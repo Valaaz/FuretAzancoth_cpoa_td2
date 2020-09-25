@@ -6,6 +6,7 @@ import dao.modele.ClientDAO;
 import dao.modele.CommandeDAO;
 import dao.modele.LigneCommandeDAO;
 import dao.modele.ProduitDAO;
+import metier.LigneCommande;
 
 public abstract class DAOFactory {
 	
@@ -27,6 +28,6 @@ public abstract class DAOFactory {
 	public abstract ClientDAO getClientDAO();
 	public abstract ProduitDAO getProduitDAO();
 	public abstract CommandeDAO getCommandeDAO();
-	public abstract LigneCommandeDAO getLigneCommandeDAO();
+	public abstract LigneCommandeDAO<LigneCommande> getLigneCommandeDAO();
 
 }
