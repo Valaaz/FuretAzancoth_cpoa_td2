@@ -7,16 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connexion.Connexion;
-import dao.modele.LigneCommandeDAO;
 import metier.LigneCommande;
 
-public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
+//Vu que LigneCommande possÃ¨de une clÃ© primaire, LigneCommande n'implÃ©mente pas LigneCommandeDAO
+public class MySQLLigneCommandeDAO {
 
 private static MySQLLigneCommandeDAO instance;
 	
 	private MySQLLigneCommandeDAO() {}
 	
-	//Vérifie si il existe une instance sinon en crée une
+	//Vï¿½rifie si il existe une instance sinon en crï¿½e une
 	public static MySQLLigneCommandeDAO getInstance() {
 		if (instance==null) {
 			instance = new MySQLLigneCommandeDAO();
@@ -27,12 +27,13 @@ private static MySQLLigneCommandeDAO instance;
 	public boolean create(LigneCommande object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("INSERT INTO `LigneCommande`(`id_produit`, `quantite`, `tarif_unitaire`) VALUES(?, ?, ?)");
+		PreparedStatement requete = laConnexion.prepareStatement("INSERT INTO `LigneCommande`(` id_commande`, `id_produit`, `quantite`, `tarif_unitaire`) VALUES(?, ?, ?, ?)");
 		
-		//Pas besoin de gérer les id car clé primaire
-		requete.setInt(1, object.getIdProduit());
-		requete.setInt(2, object.getQuantite());
-		requete.setDouble(3, object.getTarifUnitaire());
+		//Pas besoin de gï¿½rer les id car clï¿½ primaire
+		requete.setInt(1, object.getIdCommande());
+		requete.setInt(2, object.getIdProduit());
+		requete.setInt(3, object.getQuantite());
+		requete.setDouble(4, object.getTarifUnitaire());
 		
 		return nbLignes==1;
 	}
@@ -40,11 +41,10 @@ private static MySQLLigneCommandeDAO instance;
 	public boolean update(LigneCommande object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("UPDATE `LigneCommande` SET id_produit=?, quantite=?, tarif_unitaire=? WHERE id_LigneCommande=" + object.getIdCommande());
+		PreparedStatement requete = laConnexion.prepareStatement("UPDATE `LigneCommande` SET quantite=?, tarif_unitaire=? WHERE id_LigneCommande=" + object.getIdCommande() + " AND id_produit=" + object.getIdProduit());
 		
-		requete.setInt(1, object.getIdProduit());
-		requete.setInt(2, object.getQuantite());
-		requete.setDouble(3, object.getTarifUnitaire());
+		requete.setInt(1, object.getQuantite());
+		requete.setDouble(2, object.getTarifUnitaire());
 		
 		return nbLignes==1;
 	}

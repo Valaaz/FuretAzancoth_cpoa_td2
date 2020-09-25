@@ -7,13 +7,14 @@ public class Commande {
 	private int idClient;
 	private LocalDate date;
 	
-	HashMap<Produit, LigneCommande> listeCommande = new HashMap<Produit, LigneCommande>();
+	HashMap<Produit, LigneCommande> listeLigneCommande = new HashMap<Produit, LigneCommande>();
 	
-	public Commande(int idCommande, LocalDate date, int idClient) {
+	public Commande(int idCommande, LocalDate date, int idClient, HashMap<Produit, LigneCommande> listeLigneCommande) {
 		super();
 		this.idCommande = idCommande;
 		this.date = date;
 		this.idClient = idClient;
+		this.listeLigneCommande = listeLigneCommande;
 	}
 
 	public int getIdCommande() {
@@ -41,11 +42,11 @@ public class Commande {
 	}
 
 	public HashMap<Produit, LigneCommande> getListeCommande() {
-		return listeCommande;
+		return listeLigneCommande;
 	}
 
 	public void setListeCommande(HashMap<Produit, LigneCommande> listeCommande) {
-		this.listeCommande = listeCommande;
+		this.listeLigneCommande = listeCommande;
 	}
 
 	@Override

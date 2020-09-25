@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import connexion.Connexion;
 import dao.modele.CommandeDAO;
 import metier.Commande;
+import metier.LigneCommande;
+import metier.Produit;
 
 public class MySQLCommandeDAO implements CommandeDAO {
 
@@ -16,7 +19,7 @@ private static MySQLCommandeDAO instance;
 	
 	private MySQLCommandeDAO() {}
 	
-	//Vérifie si il existe une instance sinon en crée une
+	//Vï¿½rifie si il existe une instance sinon en cree une
 	public static MySQLCommandeDAO getInstance() {
 		if (instance==null) {
 			instance = new MySQLCommandeDAO();
@@ -29,7 +32,7 @@ private static MySQLCommandeDAO instance;
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("INSERT INTO `Commande`(`date_commande`, `id_client`) VALUES(?, ?)");
 		
-		//Pas besoin de gérer les id car clé primaire
+		//Pas besoin de gï¿½rer les id car clï¿½ primaire
 		requete.setDate(1, java.sql.Date.valueOf(object.getDate()));
 		requete.setInt(2, object.getIdClient());
 		
@@ -50,7 +53,7 @@ private static MySQLCommandeDAO instance;
 	public boolean delete(Commande object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Commande where id_commande=" + object.getIdCommande());
+		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Commande WHERE id_commande=" + object.getIdCommande());
 	
 		nbLignes = requete.executeUpdate();
 			
@@ -58,24 +61,54 @@ private static MySQLCommandeDAO instance;
 	}
 
 	public Commande getById(int id) throws SQLException {
-		Commande Commande = null;
+		Commande commande = null;
+		HashMap<Produit, LigneCommande> listeLigneCommande = new HashMap<Produit, LigneCommande>();
+		
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Commande where id_commande=" + id);
+		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Commande WHERE id_commande=" + id);
 		ResultSet res = requete.executeQuery();
-		if (res.next()) {
-			Commande = new Commande(res.getInt(1), res.getDate(2).toLocalDate(), res.getInt(3));
+		
+		if(res.next()) {
+			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM LigneCommande WHERE id_commande=" + id);
+			ResultSet resLigneCommande = requeteLigneCommande.executeQuery();
+			
+			while(resLigneCommande.next()) {
+				PreparedStatement requeteProduit= laConnexion.prepareStatement("SELECT * FROM Produit WHERE id_produit=" + resLigneCommande.getInt(2));
+				ResultSet resProduit= requeteProduit.executeQuery();
+				//On ajoute Ã  la HashMap un nouveau Produit (la clÃ©) et une nouvelle LigneCommande (la valeur)
+				listeLigneCommande.put(new Produit(resProduit.getInt(1), resProduit.getString(2), resProduit.getString(3), resProduit.getDouble(4), resProduit.getString(5), resProduit.getInt(6)), 
+						new LigneCommande(resLigneCommande.getInt(1), resLigneCommande.getInt(2), resLigneCommande.getInt(3), resLigneCommande.getDouble(4)));
+			}
 		}
-		return Commande;
+		
+		commande = new Commande(res.getInt(1), res.getDate(2).toLocalDate(), res.getInt(3), listeLigneCommande);
+		return commande;
 	}
 
 	public ArrayList<Commande> findAll() throws SQLException {
+		Commande commande = null;
 		ArrayList<Commande> listeCommande = new ArrayList<Commande>();
+		HashMap<Produit, LigneCommande> listeLigneCommande = new HashMap<Produit, LigneCommande>();
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Commande");
 		ResultSet res = requete.executeQuery();
-		if (res.next()) {
-			listeCommande.add(new Commande(res.getInt(1), res.getDate(2).toLocalDate(), res.getInt(3)));
+		
+		while(res.next()) {
+			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM LigneCommande WHERE id_commande=" + commande.getIdCommande());
+			ResultSet resLigneCommande = requeteLigneCommande.executeQuery();
+			
+			while(resLigneCommande.next()) {
+				PreparedStatement requeteProduit= laConnexion.prepareStatement("SELECT * FROM Produit WHERE id_produit=" + resLigneCommande.getInt(2));
+				ResultSet resProduit= requeteProduit.executeQuery();
+				//On ajoute Ã  la HashMap un nouveau Produit (la clÃ©) et une nouvelle LigneCommande (la valeur)
+				listeLigneCommande.put(new Produit(resProduit.getInt(1), resProduit.getString(2), res.getString(3), res.getDouble(4), res.getString(5), res.getInt(6)), 
+						new LigneCommande(resLigneCommande.getInt(1), resLigneCommande.getInt(2), resLigneCommande.getInt(3), resLigneCommande.getDouble(4)));
+			}
+			commande = new Commande(res.getInt(1), res.getDate(2).toLocalDate(), res.getInt(3), listeLigneCommande);
+			listeCommande.add(commande);
 		}
+		
 		return listeCommande;
 	}
 	

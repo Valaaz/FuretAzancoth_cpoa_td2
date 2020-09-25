@@ -25,15 +25,16 @@ public class Connexion {
 	public static Connection creeConnexion() 
 	{
 		
-		String url = "jdbc:mysql://devbdd.iutmetz.univ-lorraine.fr:3306/furet3u_cpoaTD1?serverTimezone=Europe/Paris";
-		String login = "furet3u_appli";
-		String pwd = "sknAWi#0";
+		String url = "jdbc:mysql://devbdd.iutmetz.univ-lorraine.fr:3306/azancoth1u_cpoaTD1?serverTimezone=Europe/Paris";
+		String login = "azancoth1u_appli";
+		String pwd = "31901886";
 		
 		
 		/*String url = "jdbc:mysql://localhost/azancoth1u_cpoatd1?serverTimezone=Europe/Paris";
 		String login = "root";
 		String pwd = "root"; 
 		*/
+		
 		Connection maConnexion = null;
 		try { 
 			maConnexion = DriverManager.getConnection(url, login, pwd);
