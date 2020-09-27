@@ -3,9 +3,10 @@ package dao.listememoire;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.modele.LigneCommandeDAO;
 import metier.LigneCommande;
 
-public class ListeMemoireLigneCommandeDAO {
+public class ListeMemoireLigneCommandeDAO implements LigneCommandeDAO<LigneCommande> {
 
 	private static ListeMemoireLigneCommandeDAO instance;
 
@@ -24,19 +25,22 @@ public class ListeMemoireLigneCommandeDAO {
 
 		this.donnees = new ArrayList<LigneCommande>();
 
-		this.donnees.add(new LigneCommande(1, 2, 4, 45.5));
-		this.donnees.add(new LigneCommande(2, 6, 5, 12));
+		this.donnees.add(new LigneCommande(1, 2, 2, 41.5));
+		this.donnees.add(new LigneCommande(1, 6, 1, 15));
+		this.donnees.add(new LigneCommande(2, 12, 4, 35));
 	}
 
 
 	@Override
 	public boolean create(LigneCommande objet) {
 
-		objet.setId(3);
+		objet.setIdCommande(3);
+		objet.setIdProduit(3);
 		// Ne fonctionne que si l'objet m�tier est bien fait...
 		while (this.donnees.contains(objet)) {
 
-			objet.setId(objet.getId() + 1);
+			objet.setIdCommande(objet.getIdCommande() + 1);
+			objet.setIdProduit(objet.getIdProduit() + 1);
 		}
 		boolean ok = this.donnees.add(objet);
 		
@@ -49,7 +53,7 @@ public class ListeMemoireLigneCommandeDAO {
 		// Ne fonctionne que si l'objet m�tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de modification d'une LigneCommande inexistante");
+			throw new IllegalArgumentException("Tentative de modification d'une ligne de commande inexistante");
 		} else {
 			
 			this.donnees.set(idx, objet);
@@ -66,7 +70,7 @@ public class ListeMemoireLigneCommandeDAO {
 		// Ne fonctionne que si l'objet m�tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de suppression d'une LigneCommande inexistante");
+			throw new IllegalArgumentException("Tentative de suppression d'une ligne de commande inexistante");
 		} else {
 			supprime = this.donnees.remove(idx);
 		}
@@ -77,9 +81,9 @@ public class ListeMemoireLigneCommandeDAO {
 	@Override
 	public LigneCommande getById(int id) {
 		// Ne fonctionne que si l'objet m�tier est bien fait...
-		int idx = this.donnees.indexOf(new LigneCommande(id, "test", "test.png"));
+		int idx = this.donnees.indexOf(new LigneCommande(id, 5, 14, 50));
 		if (idx == -1) {
-			throw new IllegalArgumentException("Aucune LigneCommande ne poss�de cet identifiant");
+			throw new IllegalArgumentException("Aucune ligne de commande ne poss�de cet identifiant");
 		} else {
 			return this.donnees.get(idx);
 		}

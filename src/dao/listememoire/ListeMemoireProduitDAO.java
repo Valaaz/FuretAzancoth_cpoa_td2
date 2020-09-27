@@ -27,7 +27,9 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 		this.donnees = new ArrayList<Produit>();
 
-		this.donnees.add(new Produit(1, "Pulls", "Très jolis", 4.5, "pulls.png", 2));
+		this.donnees.add(new Produit(2, "Sonic te kiffe", "Inspiré par la saga Séga (c'est plus fort que toi !), un pull 100% gamer qui te permettra de faire baver d'envie tes petits camarades de jeu.", 41.5, "pull1.png", 1));
+		this.donnees.add(new Produit(6, "La chaleur des rennes", "Classique mais efficace, un bonnet dont l'élégance n''est pas à souligner, il vous grattera comme il faut !", 15, "bonnet0.png", 2)); 
+		this.donnees.add(new Produit(12, "Dall", "Joyeux Noël avec nos petits lutins dansants !", 35, "bonnet1.png", 2)); 
 	}
 
 
@@ -79,7 +81,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	@Override
 	public Produit getById(int id) {
 		// Ne fonctionne que si l'objet métier est bien fait...
-		int idx = this.donnees.indexOf(new Produit(1, "Pulls", "Très jolis", 4.5, "pulls.png", 2));
+		int idx = this.donnees.indexOf(new Produit(1, "Pulls", "Très jolis", 4.5, "pull2.png", 1));
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucun produit ne possède cet identifiant");
 		} else {

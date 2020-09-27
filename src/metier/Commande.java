@@ -51,7 +51,7 @@ public class Commande {
 
 	@Override
 	public String toString() {
-		return "Commande [idCommande=" + idCommande + ", idClient=" + idClient + ", date=" + date + "]";
+		return "Commande [idCommande=" + idCommande + ", idClient=" + idClient + ", date=" + date + ", listeLigneCommande=" + listeLigneCommande + "]";
 	}
 	
 	/*

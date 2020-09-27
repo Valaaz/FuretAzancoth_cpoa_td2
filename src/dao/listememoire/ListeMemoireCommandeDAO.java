@@ -1,11 +1,14 @@
 package dao.listememoire;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.modele.CommandeDAO;
 import metier.Commande;
 
-public class ListeMemoireCommandeDAO {
+public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 	private static ListeMemoireCommandeDAO instance;
 
@@ -22,21 +25,25 @@ public class ListeMemoireCommandeDAO {
 
 	private ListeMemoireCommandeDAO() {
 
+		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate date1 = LocalDate.parse("20200902", formatage);
+    	LocalDate date2 = LocalDate.parse("20200830", formatage);
+		
 		this.donnees = new ArrayList<Commande>();
 
-		this.donnees.add(new Commande(1, date, 1));
-		this.donnees.add(new Commande(2, date, 2));
+		this.donnees.add(new Commande(1, date1, 1, null));
+		this.donnees.add(new Commande(2, date2, 1, null));
 	}
 
 
 	@Override
 	public boolean create(Commande objet) {
 
-		objet.setId(3);
+		objet.setIdCommande(3);
 		// Ne fonctionne que si l'objet m�tier est bien fait...
 		while (this.donnees.contains(objet)) {
 
-			objet.setId(objet.getId() + 1);
+			objet.setIdCommande(objet.getIdCommande() + 1);
 		}
 		boolean ok = this.donnees.add(objet);
 		
@@ -49,7 +56,7 @@ public class ListeMemoireCommandeDAO {
 		// Ne fonctionne que si l'objet m�tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de modification d'une Commande inexistante");
+			throw new IllegalArgumentException("Tentative de modification d'une commande inexistante");
 		} else {
 			
 			this.donnees.set(idx, objet);
@@ -66,7 +73,7 @@ public class ListeMemoireCommandeDAO {
 		// Ne fonctionne que si l'objet m�tier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de suppression d'une Commande inexistante");
+			throw new IllegalArgumentException("Tentative de suppression d'une commande inexistante");
 		} else {
 			supprime = this.donnees.remove(idx);
 		}
@@ -76,10 +83,14 @@ public class ListeMemoireCommandeDAO {
 
 	@Override
 	public Commande getById(int id) {
+		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate dateDebut = LocalDate.parse("25062001", formatage);
+  
+    	
 		// Ne fonctionne que si l'objet m�tier est bien fait...
-		int idx = this.donnees.indexOf(new Commande(id, "test", "test.png"));
+		int idx = this.donnees.indexOf(new Commande(id, dateDebut, 12, null));
 		if (idx == -1) {
-			throw new IllegalArgumentException("Aucune Commande ne poss�de cet identifiant");
+			throw new IllegalArgumentException("Aucune commande ne poss�de cet identifiant");
 		} else {
 			return this.donnees.get(idx);
 		}
