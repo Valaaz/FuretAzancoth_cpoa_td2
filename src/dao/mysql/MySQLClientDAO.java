@@ -33,6 +33,8 @@ public class MySQLClientDAO implements ClientDAO {
 		requete.setString(1, object.getNom());
 		requete.setString(2, object.getPrenom());
 		
+		nbLignes = requete.executeUpdate();
+		
 		return nbLignes==1;
 	}
 
@@ -43,6 +45,8 @@ public class MySQLClientDAO implements ClientDAO {
 		
 		requete.setString(1, object.getNom());
 		requete.setString(2, object.getPrenom());
+		
+		nbLignes = requete.executeUpdate();
 		
 		return nbLignes==1;
 	}

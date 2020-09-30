@@ -36,6 +36,8 @@ private static MySQLCommandeDAO instance;
 		requete.setDate(1, java.sql.Date.valueOf(object.getDate()));
 		requete.setInt(2, object.getIdClient());
 		
+		nbLignes = requete.executeUpdate();
+		
 		return nbLignes==1;
 	}
 
@@ -46,6 +48,8 @@ private static MySQLCommandeDAO instance;
 		
 		requete.setDate(1, java.sql.Date.valueOf(object.getDate()));
 		requete.setInt(2, object.getIdClient());
+		
+		nbLignes = requete.executeUpdate();
 		
 		return nbLignes==1;
 	}

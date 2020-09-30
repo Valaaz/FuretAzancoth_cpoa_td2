@@ -35,6 +35,8 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 		requete.setInt(3, object.getQuantite());
 		requete.setDouble(4, object.getTarifUnitaire());
 		
+		nbLignes = requete.executeUpdate();
+		
 		return nbLignes==1;
 	}
 
@@ -45,6 +47,8 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 		
 		requete.setInt(1, object.getQuantite());
 		requete.setDouble(2, object.getTarifUnitaire());
+		
+		nbLignes = requete.executeUpdate();
 		
 		return nbLignes==1;
 	}

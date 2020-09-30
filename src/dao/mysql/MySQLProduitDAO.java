@@ -36,6 +36,8 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setString(4, object.getVisuel());
 		requete.setInt(5, object.getIdCateg());
 		
+		nbLignes = requete.executeUpdate();
+		
 		return nbLignes==1;
 	}
 
@@ -48,6 +50,8 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setString(2, object.getDescription());
 		requete.setDouble(3, object.getTarif());
 		requete.setString(4, object.getVisuel());
+		
+		nbLignes = requete.executeUpdate();
 		
 		return nbLignes==1;
 	}

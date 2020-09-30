@@ -33,6 +33,8 @@ public class MySQLCategorieDAO implements CategorieDAO {
 		requete.setString(1, object.getTitre());
 		requete.setString(2, object.getVisuel());
 		
+		nbLignes = requete.executeUpdate();
+		
 		return nbLignes==1;
 	}
 
@@ -43,6 +45,8 @@ public class MySQLCategorieDAO implements CategorieDAO {
 		
 		requete.setString(1, object.getTitre());
 		requete.setString(2, object.getVisuel());
+		
+		nbLignes = requete.executeUpdate();
 		
 		return nbLignes==1;
 	}
