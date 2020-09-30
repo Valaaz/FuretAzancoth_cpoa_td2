@@ -5,6 +5,19 @@ public class Client {
 	private String nom;
 	private String prenom;
 	
+	//Constructeur pour la methode delete de MySQLClientDAO
+	public Client(int id) {
+		super();
+		this.id = id;
+	}
+	
+	//Constructeur pour la methode create de MySQLClientDAO
+	public Client(String nom, String prenom) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+	
 	public Client(int id, String nom, String prenom) {
 		super();
 		this.id = id;

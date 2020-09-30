@@ -8,6 +8,22 @@ public class Produit {
 	private String visuel;
 	private int idCateg;
 	
+	//Constructeur pour la methode delete de MySQLProduitDAO
+	public Produit(int id) {
+		super();
+		this.id = id;
+	}
+		
+	//Constructeur pour la methode create de MySQLProduitDAO
+	public Produit(String nom, String description, double tarif, String visuel, int idCateg) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.tarif = tarif;
+		this.visuel = visuel;
+		this.idCateg = idCateg;
+	}
+	
 	public Produit(int id, String nom, String description, double tarif, String visuel, int idCateg) {
 		super();
 		this.id = id;

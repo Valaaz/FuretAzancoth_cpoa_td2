@@ -5,6 +5,17 @@ public class Categorie {
 	private String titre;
 	private String visuel;
 	
+	//Constructeur pour la methode delete de MySQLCategorieDAO
+	public Categorie(int id) {
+		this.setId(id);
+	}
+	
+	//Constructeur pour la methode create de MySQLCategorieDAO
+	public Categorie(String titre, String visuel) {
+		this.setTitre(titre);
+		this.setVisuel(visuel);
+	}
+	
 	public Categorie(int id, String titre, String visuel) {
 		this.setId(id);
 		this.setTitre(titre);

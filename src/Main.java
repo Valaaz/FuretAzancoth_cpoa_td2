@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 import dao.factory.DAOFactory;
 import metier.Categorie;
+import metier.Client;
+import metier.Produit;
 import requetes.RequetesCategorie;
 import requetes.RequetesClients;
 import requetes.RequetesProduits;
@@ -40,17 +42,14 @@ public class Main {
 					switch(choix)
 					{
 					case 1:
-						System.out.println("Rentrez respectivement le numero de la categorie, le titre et le visuel :");
-						Categorie categ = new Categorie(5, "pedro", "pedro.png");
-						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCategorieDAO().create(categ);
+						System.out.println("Rentrez respectivement le titre et le visuel :");
 						
-						/*
-						int id = sc.nextInt();
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String titre = sc.nextLine();
 						String visuel = sc.nextLine();
-						RequetesCategorie.AjouterCategorie(id, titre, visuel);		//Appel de la methode en fonction du cas choisi
-						*/
+						
+						Categorie categAjout = new Categorie(titre, visuel);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCategorieDAO().create(categAjout);
 						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
@@ -66,13 +65,16 @@ public class Main {
 						break;
 						
 					case 2:
-						System.out.println("Rentrez respectivement le numero de la categorie a modifier, le nouveau numero, le titre et le visuel :");
+						System.out.println("Rentrez respectivement le numero de la categorie a modifier, le titre et le visuel :");
+						
 						int idModif = sc.nextInt();
-						int nouvId = sc.nextInt();
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String titreModif = sc.nextLine();
 						String visuelModif = sc.nextLine();
-						RequetesCategorie.ModifierCategorie(idModif, nouvId, titreModif, visuelModif);
+						
+						Categorie categModif = new Categorie(idModif, titreModif, visuelModif);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCategorieDAO().update(categModif);
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -88,8 +90,12 @@ public class Main {
 						
 					case 3:
 						System.out.print("Rentrez le numero de la categorie a supprimer : ");
+						
 						int idSupp = sc.nextInt();
-						RequetesCategorie.SupprimerCategorie(idSupp);
+						
+						Categorie categSupp = new Categorie(idSupp);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCategorieDAO().delete(categSupp);
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -133,12 +139,15 @@ public class Main {
 					switch(choix)
 					{
 					case 1:
-						System.out.println("Rentrez respectivement le numero du client, le nom et le prenom :");
-						int id = sc.nextInt();
+						System.out.println("Rentrez respectivement le nom et le prenom :");
+						
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String nom = sc.nextLine();
 						String prenom = sc.nextLine();
-						RequetesClients.AjouterClient(id, nom, prenom);		//Appel de la methode en fonction du cas choisi
+
+						Client clientAjout = new Client(nom, prenom);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getClientDAO().create(clientAjout);
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -153,13 +162,16 @@ public class Main {
 						break;
 						
 					case 2:
-						System.out.println("Rentrez respectivement le numero du client a modifier, le nouveau numero, le nom et le prenom :");
+						System.out.println("Rentrez respectivement le numero du client a modifier, le nom et le prenom :");
+						
 						int idModif = sc.nextInt();
-						int nouvId = sc.nextInt();
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String nomModif = sc.nextLine();
 						String prenomModif = sc.nextLine();
-						RequetesClients.ModifierClient(idModif, nouvId, nomModif, prenomModif);
+
+						Client clientModif = new Client(idModif, nomModif, prenomModif);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getClientDAO().update(clientModif);
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -175,8 +187,12 @@ public class Main {
 						
 					case 3:
 						System.out.print("Rentrez le numero du client a supprimer : ");
+						
 						int idSupp = sc.nextInt();
-						RequetesClients.SupprimerClient(idSupp);
+						
+						Client clientSupp = new Client(idSupp);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getClientDAO().delete(clientSupp);
+
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -220,8 +236,8 @@ public class Main {
 					switch(choix)
 					{
 					case 1:
-						System.out.println("Rentrez respectivement le numero du produit, le nom, la description, le tarif, le visuel et l'id de la categorie :");
-						int id = sc.nextInt();
+						System.out.println("Rentrez respectivement le nom, la description, le tarif, le visuel et l'id de la categorie :");
+						
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String nom = sc.nextLine();
 						String desc = sc.nextLine();
@@ -229,7 +245,10 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String visuel = sc.nextLine();
 						int idCateg = sc.nextInt();
-						RequetesProduits.AjouterProduit(id, nom, desc, tarif, visuel, idCateg);		//Appel de la methode en fonction du cas choisi
+						
+						Produit produitAjout = new Produit(nom, desc, tarif, visuel, idCateg);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getProduitDAO().create(produitAjout);
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -244,9 +263,9 @@ public class Main {
 						break;
 						
 					case 2:
-						System.out.println("Rentrez respectivement le numero du produit a modifier, le nouveau numero, le nom, la description, le tarif, le visuel et l'id de la categorie :");
+						System.out.println("Rentrez respectivement le numero du produit a modifier, le nom, la description, le tarif, le visuel et l'id de la categorie :");
+						
 						int idModif = sc.nextInt();
-						int nouvId = sc.nextInt();
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String nomModif = sc.nextLine();
 						String descModif = sc.nextLine();
@@ -254,7 +273,10 @@ public class Main {
 						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
 						String visuelModif = sc.nextLine();
 						int idCategModif = sc.nextInt();
-						RequetesProduits.ModifierProduit(idModif, nouvId, nomModif, descModif, tarifModif, visuelModif, idCategModif);
+
+						Produit produitModif = new Produit(idModif, nomModif, descModif, tarifModif, visuelModif, idCategModif);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getProduitDAO().update(produitModif);
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do
@@ -270,8 +292,12 @@ public class Main {
 						
 					case 3:
 						System.out.print("Rentrez le numero du produit a supprimer : ");
+						
 						int idSupp = sc.nextInt();
-						RequetesProduits.SupprimerProduit(idSupp);
+
+						Produit produitSupp = new Produit(idSupp);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getProduitDAO().delete(produitSupp);
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
 						do

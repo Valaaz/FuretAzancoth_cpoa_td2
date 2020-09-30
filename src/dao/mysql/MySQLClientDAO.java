@@ -27,11 +27,19 @@ public class MySQLClientDAO implements ClientDAO {
 	public boolean create(Client object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("INSERT INTO `Client`(`nom`, `prenom`) VALUES(?, ?)");
+		PreparedStatement requete = laConnexion.prepareStatement("INSERT INTO `Client`(`nom`, `prenom`, `identifiant`, `mot_de_passe`, `adr_numero`,"
+				+ " `adr_voie`, `adr_code_postal`, `adr_ville`, `adr_pays`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
 		//Pas besoin de gérer les id car clé primaire
 		requete.setString(1, object.getNom());
 		requete.setString(2, object.getPrenom());
+		requete.setString(3, "");
+		requete.setString(4, "");
+		requete.setInt(5, 0);
+		requete.setString(6, "");
+		requete.setInt(7, 0);
+		requete.setString(8, "");
+		requete.setString(9, "");
 		
 		nbLignes = requete.executeUpdate();
 		
