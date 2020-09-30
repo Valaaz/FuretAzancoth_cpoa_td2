@@ -3,23 +3,18 @@ import java.sql.*;
 
 public class Connexion {
 	
-	/*private static Connexion instance;
+	private static Connexion instance;
 	
 	private Connexion() {}
 	
 	public static Connexion getInstance() {
 		
-	if (instance==null) {
-		
-	instance = new Connexion();
+		if (instance==null) 
+		{
+			instance = new Connexion();
+		}
+		return instance;
 	}
-	return instance;
-	}
-	
-	/*public static Connection fermeConnexion()
-	{
-		
-	}*/
 	
 	public static Connection creeConnexion() 
 	{
