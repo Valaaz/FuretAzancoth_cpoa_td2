@@ -26,8 +26,8 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 	private ListeMemoireCommandeDAO() {
 
 		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	LocalDate date1 = LocalDate.parse("20200902", formatage);
-    	LocalDate date2 = LocalDate.parse("20200830", formatage);
+    	LocalDate date1 = LocalDate.parse("02/09/2020", formatage);
+    	LocalDate date2 = LocalDate.parse("30/08/2020", formatage);
 		
 		this.donnees = new ArrayList<Commande>();
 
@@ -40,7 +40,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 	public boolean create(Commande objet) {
 
 		objet.setIdCommande(3);
-		// Ne fonctionne que si l'objet m�tier est bien fait...
+		// Ne fonctionne que si l'objet metier est bien fait...
 		while (this.donnees.contains(objet)) {
 
 			objet.setIdCommande(objet.getIdCommande() + 1);
@@ -53,7 +53,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 	@Override
 	public boolean update(Commande objet) {
 		
-		// Ne fonctionne que si l'objet m�tier est bien fait...
+		// Ne fonctionne que si l'objet metier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de modification d'une commande inexistante");
@@ -70,7 +70,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 		Commande supprime;
 		
-		// Ne fonctionne que si l'objet m�tier est bien fait...
+		// Ne fonctionne que si l'objet metier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de suppression d'une commande inexistante");
@@ -83,14 +83,11 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 	@Override
 	public Commande getById(int id) {
-		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	LocalDate dateDebut = LocalDate.parse("25062001", formatage);
-  
     	
-		// Ne fonctionne que si l'objet m�tier est bien fait...
-		int idx = this.donnees.indexOf(new Commande(id, dateDebut, 12, null));
+		// Ne fonctionne que si l'objet metier est bien fait...
+		int idx = this.donnees.indexOf(new Commande(id));
 		if (idx == -1) {
-			throw new IllegalArgumentException("Aucune commande ne poss�de cet identifiant");
+			throw new IllegalArgumentException("Aucune commande ne possede cet identifiant");
 		} else {
 			return this.donnees.get(idx);
 		}
