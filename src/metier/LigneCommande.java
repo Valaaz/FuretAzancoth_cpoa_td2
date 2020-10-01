@@ -55,8 +55,8 @@ public class LigneCommande {
 
 	@Override
 	public String toString() {
-		return "LigneCommande [idCommande=" + idCommande + ", idProduit=" + idProduit + ", tarifUnitaire="
-				+ tarifUnitaire + "]";
+		return "LigneCommande [idCommande=" + idCommande + ", idProduit=" + idProduit + ", quantite=" + quantite
+				+ ", tarifUnitaire=" + tarifUnitaire + "]";
 	}
 	
 }

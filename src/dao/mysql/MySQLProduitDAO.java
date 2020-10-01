@@ -69,10 +69,11 @@ public class MySQLProduitDAO implements ProduitDAO {
 
 	public Produit getById(int id) throws SQLException {
 		Produit Produit = null;
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Produit where id_produit=" + id);
-		requete.setInt(1, id);
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			Produit = new Produit(res.getInt(1), res.getString(2), res.getString(3), res.getDouble(4), res.getString(5), res.getInt(6));
 		}
@@ -81,9 +82,11 @@ public class MySQLProduitDAO implements ProduitDAO {
 
 	public ArrayList<Produit> findAll() throws SQLException {
 		ArrayList<Produit> listeProduit = new ArrayList<Produit>();
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Produit");
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			listeProduit.add(new Produit(res.getInt(1), res.getString(2), res.getString(3), res.getDouble(4), res.getString(5), res.getInt(6)));
 		}

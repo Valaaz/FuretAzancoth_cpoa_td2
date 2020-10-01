@@ -10,8 +10,6 @@ import metier.Commande;
 import metier.LigneCommande;
 import metier.Produit;
 import requetes.RequetesCategorie;
-import requetes.RequetesClients;
-import requetes.RequetesProduits;
 
 public class Main {
 
@@ -37,13 +35,13 @@ public class Main {
 				{
 					System.out.print("Veuillez rentrer un entier entre 1 et 3 : ");
 				}
-			}while(choixTable < 1  || choixTable > 5);
+			}while(choixTable < 1 || choixTable > 5);
 			
 			if(choixTable == 1) {
 				//Table categorie
 				do
 				{
-					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3) une categorie ou obtenir la liste de toutes les categorie existantes(4) ? (Entrez le numero correspondant a votre choix)");
+					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3), Voir(4) une categorie ou obtenir la liste de toutes les categorie existantes(5) ? (Entrez le numero correspondant a votre choix)");
 					int choix = sc.nextInt(); 	//Recuperation du choix de l'utilisateur (choix de quel methode appeler)
 					switch(choix)
 					{
@@ -66,7 +64,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -90,7 +88,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -111,14 +109,19 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
 					case 4:
-						RequetesCategorie.listeCategorie();
-						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						System.out.print("Rentrez l'id de la categorie que vous voulez voir : ");
 						
+						int idCateg = sc.nextInt();
+						
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCategorieDAO().getById(idCateg));
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
 						do
 						{
 							choixMenu = sc.nextInt();
@@ -126,7 +129,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -140,7 +143,7 @@ public class Main {
 				//Table Client
 				do
 				{
-					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3) un client ou obtenir la liste de toutes les clients existants(4) ? (Entrez le numero correspondant a votre choix)");
+					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3), Voir(4) un client ou obtenir la liste de toutes les clients existants(5) ? (Entrez le numero correspondant a votre choix)");
 					int choix = sc.nextInt(); 	//Recuperation du choix de l'utilisateur (choix de quel methode appeler)
 					switch(choix)
 					{
@@ -187,7 +190,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -213,9 +216,14 @@ public class Main {
 						break;
 						
 					case 4:
-						RequetesClients.listeClient();
-						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						System.out.print("Rentrez l'id du client que vous voulez voir : ");
 						
+						int idClient = sc.nextInt();
+						
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getClientDAO().getById(idClient));
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
 						do
 						{
 							choixMenu = sc.nextInt();
@@ -223,7 +231,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -237,7 +245,7 @@ public class Main {
 				//Table Produit
 				do
 				{
-					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3) un produit ou obtenir la liste de toutes les produits existants(4) ? (Entrez le numero correspondant a votre choix)");
+					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3), Voir(4) un produit ou obtenir la liste de toutes les produits existants(5) ? (Entrez le numero correspondant a votre choix)");
 					int choix = sc.nextInt(); 	//Recuperation du choix de l'utilisateur (choix de quel methode appeler)
 					switch(choix)
 					{
@@ -264,7 +272,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -292,7 +300,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -313,12 +321,17 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
 					case 4:
-						RequetesProduits.listeProduit();
+						System.out.print("Rentrez l'id du produit que vous voulez voir : ");
+						
+						int idProduit = sc.nextInt();
+						
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getProduitDAO().getById(idProduit));
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						
 						do
@@ -328,7 +341,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -342,7 +355,7 @@ public class Main {
 				//Table commande
 				do
 				{
-					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3) une commande ou obtenir la liste de toutes les commandes existantes(4) ? (Entrez le numero correspondant a votre choix)");
+					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3), Voir(4) une commande ou obtenir la liste de toutes les commandes existantes(5) ? (Entrez le numero correspondant a votre choix)");
 					int choix = sc.nextInt(); 	//Recuperation du choix de l'utilisateur (choix de quel methode appeler)
 					switch(choix)
 					{
@@ -366,7 +379,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -391,7 +404,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -412,12 +425,17 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
 					case 4:
-						RequetesCategorie.listeCategorie();
+						System.out.print("Rentrez l'id de la commande que vous voulez voir : ");
+						
+						int idCommande = sc.nextInt();
+						
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCommandeDAO().getById(idCommande));
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						
 						do
@@ -427,7 +445,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -440,7 +458,7 @@ public class Main {
 				//Table ligne de commande
 				do
 				{
-					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3) une ligne de commande ou obtenir la liste de toutes les lignes de commandes existantes(4) ? (Entrez le numero correspondant a votre choix)");
+					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3), Voir(4) une ligne de commande ou obtenir la liste de toutes les lignes de commandes existantes(5) ? (Entrez le numero correspondant a votre choix)");
 					int choix = sc.nextInt(); 	//Recuperation du choix de l'utilisateur (choix de quel methode appeler)
 					switch(choix)
 					{
@@ -464,7 +482,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -488,7 +506,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -510,12 +528,17 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
 					case 4:
-						RequetesCategorie.listeCategorie();
+						System.out.print("Rentrez l'id de la ligne de commande que vous voulez voir : ");
+						
+						int idLigneCommande = sc.nextInt();
+						
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().getById(idLigneCommande));
+						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						
 						do
@@ -525,7 +548,7 @@ public class Main {
 							{
 								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 							}
-						}while(choixMenu < 1  || choixMenu > 2);
+						}while(choixMenu < 1 || choixMenu > 2);
 						
 						break;
 						
@@ -543,7 +566,7 @@ public class Main {
 				{
 					System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
 				}
-			}while(choixQuitter < 1  || choixQuitter > 2);
+			}while(choixQuitter < 1 || choixQuitter > 2);
 			
 		}while(choixQuitter != 2);
 		

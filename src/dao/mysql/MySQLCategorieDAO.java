@@ -63,9 +63,11 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 	public Categorie getById(int id) throws SQLException {
 		Categorie categ = null;
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM categorie where id_categorie=" + id);
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			categ = new Categorie(res.getInt(1), res.getString(2), res.getString(3));
 		}
@@ -74,9 +76,11 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 	public ArrayList<Categorie> findAll() throws SQLException {
 		ArrayList<Categorie> listeCateg = new ArrayList<Categorie>();
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM categorie");
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			listeCateg.add(new Categorie(res.getInt(1), res.getString(2), res.getString(3)));
 		}

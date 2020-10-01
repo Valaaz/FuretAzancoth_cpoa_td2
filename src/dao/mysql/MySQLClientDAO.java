@@ -71,9 +71,11 @@ public class MySQLClientDAO implements ClientDAO {
 
 	public Client getById(int id) throws SQLException {
 		Client client = null;
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Client where id_client=" + id);
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			client = new Client(res.getInt(1), res.getString(2), res.getString(3));
 		}
@@ -82,9 +84,11 @@ public class MySQLClientDAO implements ClientDAO {
 
 	public ArrayList<Client> findAll() throws SQLException {
 		ArrayList<Client> listeClient = new ArrayList<Client>();
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Client");
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			listeClient.add(new Client(res.getInt(1), res.getString(2), res.getString(3)));
 		}

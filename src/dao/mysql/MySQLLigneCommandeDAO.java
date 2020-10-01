@@ -65,10 +65,11 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 
 	public LigneCommande getById(int id) throws SQLException {
 		LigneCommande LigneCommande = null;
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM ligne_commande where id_commande=" + id);
-		requete.setInt(1, id);
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			LigneCommande = new LigneCommande(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4));
 		}
@@ -77,9 +78,11 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 
 	public ArrayList<LigneCommande> findAll() throws SQLException {
 		ArrayList<LigneCommande> listeLigneCommande = new ArrayList<LigneCommande>();
+		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM ligne_commande");
 		ResultSet res = requete.executeQuery();
+		
 		if (res.next()) {
 			listeLigneCommande.add(new LigneCommande(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4)));
 		}

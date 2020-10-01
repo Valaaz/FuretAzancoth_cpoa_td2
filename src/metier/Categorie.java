@@ -51,9 +51,10 @@ public class Categorie {
 		}
 		this.visuel = visuel;
 	}
-		
+
+	@Override
 	public String toString() {
-		return "(" + (this.id>=0?this.id:"iduveau") + ") " + this.titre + this.visuel;
+		return "Categorie [id=" + id + ", titre=" + titre + ", visuel=" + visuel + "]";
 	}
 	
 }

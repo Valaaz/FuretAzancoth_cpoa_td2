@@ -73,7 +73,7 @@ private static MySQLCommandeDAO instance;
 		ResultSet res = requete.executeQuery();
 		
 		if(res.next()) {
-			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM LigneCommande WHERE id_commande=" + id);
+			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM ligne_commande WHERE id_commande=" + id);
 			ResultSet resLigneCommande = requeteLigneCommande.executeQuery();
 			
 			while(resLigneCommande.next()) {
@@ -99,7 +99,7 @@ private static MySQLCommandeDAO instance;
 		ResultSet res = requete.executeQuery();
 		
 		while(res.next()) {
-			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM LigneCommande WHERE id_commande=" + commande.getIdCommande());
+			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM ligne_commande WHERE id_commande=" + commande.getIdCommande());
 			ResultSet resLigneCommande = requeteLigneCommande.executeQuery();
 			
 			while(resLigneCommande.next()) {

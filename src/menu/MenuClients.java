@@ -1,4 +1,4 @@
-package menu;
+/*package menu;
 
 import requetes.RequetesClients;
 
@@ -90,4 +90,4 @@ public class MenuClients {
 		}	
 	}while(choixMenu != 2);	
 	}
-}
+}*/
