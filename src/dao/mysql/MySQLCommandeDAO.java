@@ -73,15 +73,18 @@ private static MySQLCommandeDAO instance;
 		ResultSet res = requete.executeQuery();
 		
 		if(res.next()) {
-			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM LigneCommande WHERE id_commande=" + id);
+			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM ligne_commande WHERE id_commande=" + id);
 			ResultSet resLigneCommande = requeteLigneCommande.executeQuery();
 			
 			while(resLigneCommande.next()) {
 				PreparedStatement requeteProduit= laConnexion.prepareStatement("SELECT * FROM Produit WHERE id_produit=" + resLigneCommande.getInt(2));
 				ResultSet resProduit= requeteProduit.executeQuery();
-				//On ajoute à la HashMap un nouveau Produit (la clé) et une nouvelle LigneCommande (la valeur)
-				listeLigneCommande.put(new Produit(resProduit.getInt(1), resProduit.getString(2), resProduit.getString(3), resProduit.getDouble(4), resProduit.getString(5), resProduit.getInt(6)), 
-						new LigneCommande(resLigneCommande.getInt(1), resLigneCommande.getInt(2), resLigneCommande.getInt(3), resLigneCommande.getDouble(4)));
+				
+				if(resProduit.next()) {
+					//On ajoute à la HashMap un nouveau Produit (la clé) et une nouvelle LigneCommande (la valeur)
+					listeLigneCommande.put(new Produit(resProduit.getInt(1), resProduit.getString(2), resProduit.getString(3), resProduit.getDouble(4), resProduit.getString(5), resProduit.getInt(6)), 
+							new LigneCommande(resLigneCommande.getInt(1), resLigneCommande.getInt(2), resLigneCommande.getInt(3), resLigneCommande.getDouble(4)));
+				}
 			}
 		}
 		
@@ -90,7 +93,6 @@ private static MySQLCommandeDAO instance;
 	}
 
 	public ArrayList<Commande> findAll() throws SQLException {
-		Commande commande = null;
 		ArrayList<Commande> listeCommande = new ArrayList<Commande>();
 		HashMap<Produit, LigneCommande> listeLigneCommande = new HashMap<Produit, LigneCommande>();
 		
@@ -99,18 +101,20 @@ private static MySQLCommandeDAO instance;
 		ResultSet res = requete.executeQuery();
 		
 		while(res.next()) {
-			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM LigneCommande WHERE id_commande=" + commande.getIdCommande());
+			PreparedStatement requeteLigneCommande = laConnexion.prepareStatement("SELECT * FROM ligne_commande WHERE id_commande=" + res.getInt(1));
 			ResultSet resLigneCommande = requeteLigneCommande.executeQuery();
 			
 			while(resLigneCommande.next()) {
 				PreparedStatement requeteProduit= laConnexion.prepareStatement("SELECT * FROM Produit WHERE id_produit=" + resLigneCommande.getInt(2));
 				ResultSet resProduit= requeteProduit.executeQuery();
-				//On ajoute à la HashMap un nouveau Produit (la clé) et une nouvelle LigneCommande (la valeur)
-				listeLigneCommande.put(new Produit(resProduit.getInt(1), resProduit.getString(2), res.getString(3), res.getDouble(4), res.getString(5), res.getInt(6)), 
-						new LigneCommande(resLigneCommande.getInt(1), resLigneCommande.getInt(2), resLigneCommande.getInt(3), resLigneCommande.getDouble(4)));
+				
+				if(resProduit.next()) {
+					//On ajoute à la HashMap un nouveau Produit (la clé) et une nouvelle LigneCommande (la valeur)
+					listeLigneCommande.put(new Produit(resProduit.getInt(1), resProduit.getString(2), resProduit.getString(3), resProduit.getDouble(4), resProduit.getString(5), resProduit.getInt(6)), 
+							new LigneCommande(resLigneCommande.getInt(1), resLigneCommande.getInt(2), resLigneCommande.getInt(3), resLigneCommande.getDouble(4)));
+				}
 			}
-			commande = new Commande(res.getInt(1), res.getDate(2).toLocalDate(), res.getInt(3), listeLigneCommande);
-			listeCommande.add(commande);
+			listeCommande.add(new Commande(res.getInt(1), res.getDate(2).toLocalDate(), res.getInt(3), listeLigneCommande));
 		}
 		
 		return listeCommande;

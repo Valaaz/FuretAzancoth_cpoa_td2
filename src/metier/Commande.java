@@ -67,6 +67,20 @@ public class Commande {
 	public String toString() {
 		return "Commande [idCommande=" + idCommande + ", idClient=" + idClient + ", date=" + date + ", listeLigneCommande=" + listeLigneCommande + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Commande other = (Commande) obj;
+		if (idCommande != other.idCommande)
+			return false;
+		return true;
+	}
 	
 	/*
 	- conversion d'une date MySQL (java.sql.Date) vers LocalDate :

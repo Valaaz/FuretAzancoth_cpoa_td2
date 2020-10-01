@@ -1,6 +1,7 @@
 package metier;
 
 public class Categorie {
+
 	private int id;
 	private String titre;
 	private String visuel;
@@ -51,9 +52,24 @@ public class Categorie {
 		}
 		this.visuel = visuel;
 	}
-		
+
+	@Override
 	public String toString() {
-		return "(" + (this.id>=0?this.id:"iduveau") + ") " + this.titre + this.visuel;
+		return "Categorie [id=" + id + ", titre=" + titre + ", visuel=" + visuel + "]";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Categorie other = (Categorie) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 	
 }

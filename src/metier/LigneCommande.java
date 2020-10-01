@@ -55,8 +55,24 @@ public class LigneCommande {
 
 	@Override
 	public String toString() {
-		return "LigneCommande [idCommande=" + idCommande + ", idProduit=" + idProduit + ", tarifUnitaire="
-				+ tarifUnitaire + "]";
+		return "LigneCommande [idCommande=" + idCommande + ", idProduit=" + idProduit + ", quantite=" + quantite
+				+ ", tarifUnitaire=" + tarifUnitaire + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LigneCommande other = (LigneCommande) obj;
+		if (idCommande != other.idCommande)
+			return false;
+		if (idProduit != other.idProduit)
+			return false;
+		return true;
 	}
 	
 }

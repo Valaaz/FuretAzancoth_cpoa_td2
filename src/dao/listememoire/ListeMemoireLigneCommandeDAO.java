@@ -1,5 +1,6 @@
 package dao.listememoire;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +93,16 @@ public class ListeMemoireLigneCommandeDAO implements LigneCommandeDAO<LigneComma
 	@Override
 	public ArrayList<LigneCommande> findAll() {
 		return (ArrayList<LigneCommande>) this.donnees;
+	}
+
+	@Override
+	public LigneCommande getById(int idCommande, int idProduit) throws SQLException {
+		int idx = this.donnees.indexOf(new LigneCommande(idCommande, idProduit));
+		if (idx == -1) {
+			throw new IllegalArgumentException("Aucune ligne de commande ne poss�de cet identifiant");
+		} else {
+			return this.donnees.get(idx);
+		}
 	}
 	
 }

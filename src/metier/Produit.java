@@ -87,5 +87,19 @@ public class Produit {
 		return "Produit [id=" + id + ", nom=" + nom + ", description=" + description + ", tarif=" + tarif + ", visuel="
 				+ visuel + ", idCateg=" + idCateg + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produit other = (Produit) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 	
 }

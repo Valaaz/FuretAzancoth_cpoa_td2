@@ -1,4 +1,4 @@
-package menu;
+/*package menu;
 
 import requetes.RequetesCategorie;
 
@@ -90,4 +90,4 @@ public class MenuCategorie {
 		}	
 	}while(choixMenu != 2);
 	}
-}
+}*/

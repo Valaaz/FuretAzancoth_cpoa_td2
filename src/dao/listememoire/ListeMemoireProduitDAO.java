@@ -36,7 +36,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	@Override
 	public boolean create(Produit objet) {
 
-		objet.setId(3);
+		objet.setId(12);
 		// Ne fonctionne que si l'objet métier est bien fait...
 		while (this.donnees.contains(objet)) {
 
@@ -81,7 +81,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	@Override
 	public Produit getById(int id) {
 		// Ne fonctionne que si l'objet métier est bien fait...
-		int idx = this.donnees.indexOf(new Produit(1, "Pulls", "Très jolis", 4.5, "pull2.png", 1));
+		int idx = this.donnees.indexOf(new Produit(id));
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucun produit ne possède cet identifiant");
 		} else {
