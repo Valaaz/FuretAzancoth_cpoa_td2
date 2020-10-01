@@ -78,7 +78,7 @@ public class ListeMemoireClientDAO implements ClientDAO {
 	@Override
 	public Client getById(int id) {
 		// Ne fonctionne que si l'objet m�tier est bien fait...
-		int idx = this.donnees.indexOf(new Client(id, "test", "test.png"));
+		int idx = this.donnees.indexOf(new Client(id));
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucun client ne poss�de cet identifiant");
 		} else {

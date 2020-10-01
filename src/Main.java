@@ -600,7 +600,7 @@ public class Main {
 						break;
 						
 					case 4:
-						System.out.print("Rentrez l'id de la ligne de commande que vous voulez voir : ");
+						System.out.print("Rentrez l'id de la ligne de commande et l'id du produit que vous voulez voir : ");
 						
 						int idCommande = sc.nextInt();
 						int idProduit = sc.nextInt();
@@ -1245,7 +1245,7 @@ public class Main {
 						break;
 						
 					case 4:
-						System.out.print("Rentrez l'id de la ligne de commande que vous voulez voir : ");
+						System.out.print("Rentrez l'id de la ligne de commande et l'id du produit que vous voulez voir : ");
 						
 						int idCommande = sc.nextInt();
 						int idProduit = sc.nextInt();

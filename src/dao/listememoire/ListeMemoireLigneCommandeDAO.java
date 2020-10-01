@@ -97,8 +97,12 @@ public class ListeMemoireLigneCommandeDAO implements LigneCommandeDAO<LigneComma
 
 	@Override
 	public LigneCommande getById(int idCommande, int idProduit) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		int idx = this.donnees.indexOf(new LigneCommande(idCommande, idProduit));
+		if (idx == -1) {
+			throw new IllegalArgumentException("Aucune ligne de commande ne poss�de cet identifiant");
+		} else {
+			return this.donnees.get(idx);
+		}
 	}
 	
 }
