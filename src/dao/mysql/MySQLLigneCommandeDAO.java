@@ -64,16 +64,29 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 	}
 
 	public LigneCommande getById(int id) throws SQLException {
-		LigneCommande LigneCommande = null;
+		LigneCommande ligneCommande = null;
 		
 		Connection laConnexion = Connexion.creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM ligne_commande where id_commande=" + id);
 		ResultSet res = requete.executeQuery();
 		
 		if (res.next()) {
-			LigneCommande = new LigneCommande(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4));
+			ligneCommande = new LigneCommande(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4));
 		}
-		return LigneCommande;
+		return ligneCommande;
+	}
+	
+	public LigneCommande getById(int idCommande, int idProduit) throws SQLException {
+		LigneCommande ligneCommande = null;
+		
+		Connection laConnexion = Connexion.creeConnexion();
+		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM ligne_commande where id_commande=" + idCommande + " and id_produit=" + idProduit);
+		ResultSet res = requete.executeQuery();
+		
+		if (res.next()) {
+			ligneCommande = new LigneCommande(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4));
+		}
+		return ligneCommande;
 	}
 
 	public ArrayList<LigneCommande> findAll() throws SQLException {

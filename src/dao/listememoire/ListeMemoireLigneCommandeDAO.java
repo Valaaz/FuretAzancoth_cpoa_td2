@@ -1,5 +1,6 @@
 package dao.listememoire;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +93,12 @@ public class ListeMemoireLigneCommandeDAO implements LigneCommandeDAO<LigneComma
 	@Override
 	public ArrayList<LigneCommande> findAll() {
 		return (ArrayList<LigneCommande>) this.donnees;
+	}
+
+	@Override
+	public LigneCommande getById(int idCommande, int idProduit) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

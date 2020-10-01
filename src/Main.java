@@ -9,7 +9,6 @@ import metier.Client;
 import metier.Commande;
 import metier.LigneCommande;
 import metier.Produit;
-import requetes.RequetesCategorie;
 
 public class Main {
 
@@ -535,9 +534,10 @@ public class Main {
 					case 4:
 						System.out.print("Rentrez l'id de la ligne de commande que vous voulez voir : ");
 						
-						int idLigneCommande = sc.nextInt();
+						int idCommande = sc.nextInt();
+						int idProduit = sc.nextInt();
 						
-						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().getById(idLigneCommande));
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().getById(idCommande, idProduit));
 						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						
