@@ -9,6 +9,20 @@ public class Commande {
 	
 	HashMap<Produit, LigneCommande> listeLigneCommande = new HashMap<Produit, LigneCommande>();
 	
+	//Constructeur pour la methode delete de MySQLCommandeDAO
+	public Commande(int id) {
+		super();
+		this.idCommande = id;
+	}
+			
+	//Constructeur pour la methode create de MySQLCommandeDAO
+	public Commande(LocalDate date, int idClient, HashMap<Produit, LigneCommande> listeLigneCommande) {
+		super();
+		this.date = date;
+		this.idClient = idClient;
+		this.listeLigneCommande = listeLigneCommande;
+	}
+	
 	public Commande(int idCommande, LocalDate date, int idClient, HashMap<Produit, LigneCommande> listeLigneCommande) {
 		super();
 		this.idCommande = idCommande;

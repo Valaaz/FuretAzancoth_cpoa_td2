@@ -1,9 +1,13 @@
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import dao.factory.DAOFactory;
 import metier.Categorie;
 import metier.Client;
+import metier.Commande;
+import metier.LigneCommande;
 import metier.Produit;
 import requetes.RequetesCategorie;
 import requetes.RequetesClients;
@@ -19,19 +23,21 @@ public class Main {
 		int choixMenu = 0;
 		int choixQuitter = 0;
 		
+		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		System.out.println("Debut");	//aide pour se situer dans le programme
 		
 		do {
 			System.out.println("Sur quelle table voulez vous travaillez ?");
-			System.out.println("Categorie(1), Client(2), Produit(3)");
+			System.out.println("Categorie(1), Client(2), Produit(3), Commande(4), LigneCommande(5)");
 			do
 			{
 				choixTable = sc.nextInt();		//Recuperation du choix de l'utilisateur (choix de la table a modifier)
-				if(choixTable < 1 || choixTable > 3)		//On s'assure que l'utilisateur rentre un chiffre valide
+				if(choixTable < 1 || choixTable > 5)		//On s'assure que l'utilisateur rentre un chiffre valide
 				{
 					System.out.print("Veuillez rentrer un entier entre 1 et 3 : ");
 				}
-			}while(choixTable < 1  || choixTable > 3);
+			}while(choixTable < 1  || choixTable > 5);
 			
 			if(choixTable == 1) {
 				//Table categorie
@@ -127,7 +133,7 @@ public class Main {
 					default:
 						System.out.print("Veuillez entrer un numero valide : ");
 					}	
-				}while(choixMenu != 2);	
+				}while(choixMenu != 2);
 				
 			}
 			else if(choixTable == 2) {
@@ -331,6 +337,202 @@ public class Main {
 					}	
 				}while(choixMenu != 2);	
 				
+			}
+			else if(choixTable == 4) {
+				//Table commande
+				do
+				{
+					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3) une commande ou obtenir la liste de toutes les commandes existantes(4) ? (Entrez le numero correspondant a votre choix)");
+					int choix = sc.nextInt(); 	//Recuperation du choix de l'utilisateur (choix de quel methode appeler)
+					switch(choix)
+					{
+					case 1:
+						System.out.println("Rentrez respectivement la date de commande et l'id du client :");
+						
+						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
+						String stringCommandeAjout = sc.nextLine();
+						LocalDate dateCommandeAjout = LocalDate.parse(stringCommandeAjout, formatage);
+						int idClientAjout = sc.nextInt();
+						
+						Commande commandeAjout = new Commande(dateCommandeAjout, idClientAjout, null);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCommandeDAO().create(commandeAjout);
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
+						do
+						{
+							choixMenu = sc.nextInt();		//Recuperation du choix de l'utilisateur (choix de continuer ou quitter)
+							if(choixMenu < 1 || choixMenu > 2)		//On s'assure que l'utilisateur rentre un chiffre valide
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					case 2:
+						System.out.println("Rentrez respectivement le numero de la commande a modifier, la date de commande et le l'id du client :");
+						
+						int idModif = sc.nextInt();
+						sc.nextLine();		//On vide la ligne pour pouvoir en lire une autre
+						String stringCommandeModif = sc.nextLine();
+						LocalDate dateCommandeModif = LocalDate.parse(stringCommandeModif, formatage);
+						int idClientModif = sc.nextInt();
+						
+						Commande commandeModif = new Commande(idModif, dateCommandeModif, idClientModif, null);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCommandeDAO().update(commandeModif);
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					case 3:
+						System.out.print("Rentrez le numero de la commande a supprimer : ");
+						
+						int idSupp = sc.nextInt();
+						
+						Commande commandeSupp = new Commande(idSupp);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCommandeDAO().delete(commandeSupp);
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					case 4:
+						RequetesCategorie.listeCategorie();
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					default:
+						System.out.print("Veuillez entrer un numero valide : ");
+					}	
+				}while(choixMenu != 2);
+			}
+			else if(choixTable == 5) {
+				//Table ligne de commande
+				do
+				{
+					System.out.println("Souhaitez-vous Ajouter(1), Modifier(2), Supprimer(3) une ligne de commande ou obtenir la liste de toutes les lignes de commandes existantes(4) ? (Entrez le numero correspondant a votre choix)");
+					int choix = sc.nextInt(); 	//Recuperation du choix de l'utilisateur (choix de quel methode appeler)
+					switch(choix)
+					{
+					case 1:
+						System.out.println("Rentrez respectivement l'id de la commande, l'id du produit, la quantite et le tarif unitaire :");
+						
+						int idCommandeAjout = sc.nextInt();
+						int idProduitAjout = sc.nextInt();
+						int quantiteAjout = sc.nextInt();
+						double idClientAjout = sc.nextDouble();
+						
+						LigneCommande ligneCommandeAjout = new LigneCommande(idCommandeAjout, idProduitAjout, quantiteAjout, idClientAjout);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().create(ligneCommandeAjout);
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
+						do
+						{
+							choixMenu = sc.nextInt();		//Recuperation du choix de l'utilisateur (choix de continuer ou quitter)
+							if(choixMenu < 1 || choixMenu > 2)		//On s'assure que l'utilisateur rentre un chiffre valide
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					case 2:
+						System.out.println("Rentrez respectivement l'id de la commande et l'id du produit a modifier, la quantite et le tarif unitaire :");
+						
+						int idCommandeModif = sc.nextInt();
+						int idProduitModif = sc.nextInt();
+						int quantiteModif = sc.nextInt();
+						double idClientModif = sc.nextDouble();
+						
+						LigneCommande ligneCommandeModif = new LigneCommande(idCommandeModif, idProduitModif, quantiteModif, idClientModif);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().update(ligneCommandeModif);
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					case 3:
+						System.out.print("Rentrez le numero de la commande et le numero du produit a supprimer : ");
+						
+						int idCommandeSupp = sc.nextInt();
+						int idProduitSupp = sc.nextInt();
+						
+						LigneCommande ligneCommandeSupp = new LigneCommande(idCommandeSupp, idProduitSupp);
+						DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().delete(ligneCommandeSupp);
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					case 4:
+						RequetesCategorie.listeCategorie();
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1  || choixMenu > 2);
+						
+						break;
+						
+					default:
+						System.out.print("Veuillez entrer un numero valide : ");
+					}	
+				}while(choixMenu != 2);
 			}
 			
 			System.out.print("Voulez vous passer sur une autre table(1) ou quitter(2) ? ");		// 1 : l'utilisateur passe sur une autre table
