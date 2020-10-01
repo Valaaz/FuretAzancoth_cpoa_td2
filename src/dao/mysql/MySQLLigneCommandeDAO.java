@@ -27,7 +27,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 	public boolean create(LigneCommande object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("INSERT INTO `LigneCommande`(` id_commande`, `id_produit`, `quantite`, `tarif_unitaire`) VALUES(?, ?, ?, ?)");
+		PreparedStatement requete = laConnexion.prepareStatement("INSERT INTO `ligne_commande`(`id_commande`, `id_produit`, `quantite`, `tarif_unitaire`) VALUES(?, ?, ?, ?)");
 		
 		//Pas besoin de g�rer les id car cl� primaire
 		requete.setInt(1, object.getIdCommande());
@@ -43,7 +43,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 	public boolean update(LigneCommande object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("UPDATE `LigneCommande` SET quantite=?, tarif_unitaire=? WHERE id_LigneCommande=" + object.getIdCommande() + " AND id_produit=" + object.getIdProduit());
+		PreparedStatement requete = laConnexion.prepareStatement("UPDATE `ligne_commande` SET quantite=?, tarif_unitaire=? WHERE id_commande=" + object.getIdCommande() + " AND id_produit=" + object.getIdProduit());
 		
 		requete.setInt(1, object.getQuantite());
 		requete.setDouble(2, object.getTarifUnitaire());
@@ -56,7 +56,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 	public boolean delete(LigneCommande object) throws SQLException {
 		int nbLignes = 0;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM LigneCommande where id_LigneCommande=" + object.getIdCommande());
+		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM ligne_commande where id_commande=" + object.getIdCommande());
 		
 		nbLignes = requete.executeUpdate();
 			
@@ -66,7 +66,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 	public LigneCommande getById(int id) throws SQLException {
 		LigneCommande LigneCommande = null;
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM LigneCommande where id_LigneCommande=" + id);
+		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM ligne_commande where id_commande=" + id);
 		requete.setInt(1, id);
 		ResultSet res = requete.executeQuery();
 		if (res.next()) {
@@ -78,7 +78,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 	public ArrayList<LigneCommande> findAll() throws SQLException {
 		ArrayList<LigneCommande> listeLigneCommande = new ArrayList<LigneCommande>();
 		Connection laConnexion = Connexion.creeConnexion();
-		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM LigneCommande");
+		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM ligne_commande");
 		ResultSet res = requete.executeQuery();
 		if (res.next()) {
 			listeLigneCommande.add(new LigneCommande(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4)));
