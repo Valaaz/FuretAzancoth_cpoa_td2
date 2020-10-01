@@ -81,7 +81,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM categorie");
 		ResultSet res = requete.executeQuery();
 		
-		if (res.next()) {
+		while(res.next()) {
 			listeCateg.add(new Categorie(res.getInt(1), res.getString(2), res.getString(3)));
 		}
 		return listeCateg;

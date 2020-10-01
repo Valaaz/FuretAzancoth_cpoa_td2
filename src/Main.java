@@ -132,6 +132,23 @@ public class Main {
 						
 						break;
 						
+					case 5:
+						System.out.println("Affichage de toutes les categories :");
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCategorieDAO().findAll());
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1 || choixMenu > 2);
+						
+						break;
+						
 					default:
 						System.out.print("Veuillez entrer un numero valide : ");
 					}	
@@ -223,6 +240,23 @@ public class Main {
 						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1 || choixMenu > 2);
+						
+						break;
+						
+					case 5:
+						System.out.println("Affichage de tous les clients :");
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getClientDAO().findAll());
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						
 						do
 						{
 							choixMenu = sc.nextInt();
@@ -344,6 +378,23 @@ public class Main {
 						
 						break;
 						
+					case 5:
+						System.out.println("Affichage de tous les produits :");
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getProduitDAO().findAll());
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1 || choixMenu > 2);
+						
+						break;
+						
 					default:
 						System.out.print("Veuillez entrer un numero valide : ");
 					}	
@@ -448,6 +499,23 @@ public class Main {
 						
 						break;
 						
+					case 5:
+						System.out.println("Affichage de toutes les commandes :");
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getCommandeDAO().findAll());
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1 || choixMenu > 2);
+						
+						break;
+						
 					default:
 						System.out.print("Veuillez entrer un numero valide : ");
 					}	
@@ -538,6 +606,23 @@ public class Main {
 						int idProduit = sc.nextInt();
 						
 						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().getById(idCommande, idProduit));
+						
+						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
+						
+						do
+						{
+							choixMenu = sc.nextInt();
+							if(choixMenu < 1 || choixMenu > 2)
+							{
+								System.out.print("Veuillez rentrer un entier entre 1 et 2 : ");
+							}
+						}while(choixMenu < 1 || choixMenu > 2);
+						
+						break;
+					
+					case 5:
+						System.out.println("Affichage de toutes les lignes de commande");
+						System.out.println(DAOFactory.getDAOFactory(dao.Persistance.MYSQL).getLigneCommandeDAO().findAll());
 						
 						System.out.print("Voulez vous continuer(1) ou quitter(2) ? ");
 						

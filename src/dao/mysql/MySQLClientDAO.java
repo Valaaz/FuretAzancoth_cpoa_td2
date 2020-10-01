@@ -89,7 +89,7 @@ public class MySQLClientDAO implements ClientDAO {
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Client");
 		ResultSet res = requete.executeQuery();
 		
-		if (res.next()) {
+		while(res.next()) {
 			listeClient.add(new Client(res.getInt(1), res.getString(2), res.getString(3)));
 		}
 		return listeClient;

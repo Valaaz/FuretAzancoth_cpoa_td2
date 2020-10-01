@@ -96,7 +96,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO<LigneCommande>{
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM ligne_commande");
 		ResultSet res = requete.executeQuery();
 		
-		if (res.next()) {
+		while(res.next()) {
 			listeLigneCommande.add(new LigneCommande(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4)));
 		}
 		return listeLigneCommande;

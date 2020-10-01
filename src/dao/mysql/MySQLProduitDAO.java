@@ -87,7 +87,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 		PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Produit");
 		ResultSet res = requete.executeQuery();
 		
-		if (res.next()) {
+		while(res.next()) {
 			listeProduit.add(new Produit(res.getInt(1), res.getString(2), res.getString(3), res.getDouble(4), res.getString(5), res.getInt(6)));
 		}
 		return listeProduit;
